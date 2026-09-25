@@ -1,0 +1,136 @@
+/* Base responsive */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+img,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea {
+  max-width: 100%;
+}
+
+/* Effet Glassmorphism pour la barre de navigation */
+.glass-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Animations légères pour les transitions */
+.page-section {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  header .max-w-7xl {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  header .h-20 {
+    min-height: 4.5rem;
+    height: auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  header a[aria-label],
+  header a:first-child {
+    min-width: 0;
+  }
+
+  header a:first-child > div:last-child {
+    min-width: 0;
+  }
+
+  header a:first-child span {
+    font-size: 0.75rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  header a:first-child img {
+    max-height: 2.75rem;
+  }
+
+  main .py-24 {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  main h1 {
+    overflow-wrap: anywhere;
+  }
+
+  main .-mt-10 {
+    margin-top: -2rem;
+  }
+
+  main .rounded-3xl {
+    border-radius: 1rem;
+  }
+
+  main .p-8,
+  main .sm\\:p-12 {
+    padding: 1.25rem;
+  }
+
+  main .grid {
+    min-width: 0;
+  }
+
+  main .grid > * {
+    min-width: 0;
+  }
+
+  footer {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
