@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIONS CLUB ABIDJAN UIPA</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Feuille de style personnalisée -->
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            lions: {
+              blue: '#00338D',
+              gold: '#F2A900',
+              darkBlue: '#002266',
+              lightGold: '#FFC72C'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col font-sans">
+
+  <!-- TOP BAR & NAVBAR -->
+  <header class="sticky top-0 z-50 glass-nav bg-white/90 dark:bg-gray-900/90 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- LOGO & BRAND NAME -->
+        <a href="#accueil" onclick="navigateTo('accueil')" class="flex items-center gap-3 group">
+          <div class="flex items-center">
+            <img src="Images/Logo Lions I.jpeg" alt="Lions Club Logo" class="h-12 w-auto transition-transform group-hover:scale-105">
+            <img src="Images/Logo Lions U.jpeg" alt="Lions Club Logo U" class="h-12 w-auto transition-transform group-hover:scale-105">
+          </div>
+          <div class="flex flex-col">
+            <span class="font-extrabold text-lg sm:text-xl text-lions-blue dark:text-lions-gold tracking-tight leading-none">
+              LIONS CLUB ABIDJAN UIPA
+            </span>
+            
+          </div>
+        </a>
+
+        <!-- DESKTOP NAVIGATION -->
+        <nav class="hidden md:flex items-center gap-6">
+          <button onclick="navigateTo('accueil')" data-nav="accueil" class="nav-link font-semibold text-gray-700 dark:text-gray-200 hover:text-lions-blue dark:hover:text-lions-gold transition" data-i18n="nav-home">Accueil</button>
+          <button onclick="navigateTo('historique')" data-nav="historique" class="nav-link font-semibold text-gray-700 dark:text-gray-200 hover:text-lions-blue dark:hover:text-lions-gold transition" data-i18n="nav-history">Historique</button>
+          <button onclick="navigateTo('activites')" data-nav="activites" class="nav-link font-semibold text-gray-700 dark:text-gray-200 hover:text-lions-blue dark:hover:text-lions-gold transition" data-i18n="nav-activities">Activités</button>
+          <button onclick="navigateTo('membres')" data-nav="membres" class="nav-link font-semibold text-gray-700 dark:text-gray-200 hover:text-lions-blue dark:hover:text-lions-gold transition" data-i18n="nav-members">Membres</button>
+          <button onclick="navigateTo('contact')" data-nav="contact" class="nav-link font-semibold text-gray-700 dark:text-gray-200 hover:text-lions-blue dark:hover:text-lions-gold transition" data-i18n="nav-contact">Contactez-Nous</button>
+        </nav>
+
+        <!-- CONTROLS (Theme & Langue) -->
+        <div class="flex items-center gap-3">
+          <!-- Toggle Langue -->
+          <button id="lang-toggle" onclick="toggleLanguage()" class="w-8 h-8 p-0 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-bold flex items-center justify-center border border-gray-300 dark:border-gray-700 transition" title="Changer de langue">
+            <span id="lang-label">EN</span>
+          </button>
+
+          <!-- Toggle Thème -->
+          <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 transition" title="Changer de thème">
+            <i data-lucide="moon" id="theme-icon" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-4 pt-2 pb-4 space-y-2">
+      <button onclick="navigateTo('accueil'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-200" data-i18n="nav-home">Accueil</button>
+      <button onclick="navigateTo('historique'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-200" data-i18n="nav-history">Historique</button>
+      <button onclick="navigateTo('activites'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-200" data-i18n="nav-activities">Activités</button>
+      <button onclick="navigateTo('membres'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-200" data-i18n="nav-members">Membres</button>
+      <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 font-medium text-gray-700 dark:text-gray-200" data-i18n="nav-contact">Contactez-nous</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow">
+    
+    <!-- ACCUEIL -->
+    <section id="page-accueil" class="page-section">
+      <!-- Hero Banner -->
+      <div class="relative bg-gradient-to-r from-lions-blue to-lions-darkBlue text-white py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+          <span class="inline-block bg-lions-gold text-lions-darkBlue font-bold text-xs uppercase px-3 py-1 rounded-full mb-4" data-i18n="hero-badge">Nous Servons</span>
+          <h1 class="text-4xl sm:text-6xl font-black mb-6 tracking-tight leading-tight" data-i18n="hero-title">
+            Ensemble, créons un impact durable à Abidjan
+          </h1>
+          <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-8 font-light" data-i18n="hero-desc">
+            Le Lions Club Abidjan UIPA rassemble des hommes et des femmes d'action engagés pour répondre aux besoins humanitaires locaux et promouvoir la paix.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <button onclick="navigateTo('activites')" class="bg-lions-gold hover:bg-lions-lightGold text-lions-darkBlue font-bold px-6 py-3 rounded-xl shadow-lg transition transform hover:-translate-y-0.5" data-i18n="btn-discover">Découvrir nos actions</button>
+            <button onclick="navigateTo('contact')" class="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-xl backdrop-blur-md border border-white/20 transition" data-i18n="btn-join">Nous rejoindre</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
+          <div class="text-center p-4">
+            <p class="text-3xl font-black text-lions-blue dark:text-lions-gold">30+</p>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400" data-i18n="stat-members">Membres Actifs</p>
+          </div>
+          <div class="text-center p-4 border-t md:border-t-0 md:border-l border-gray-200 dark:border-gray-700">
+            <p class="text-3xl font-black text-lions-blue dark:text-lions-gold">50+</p>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400" data-i18n="stat-actions">Actions Réalisées</p>
+          </div>
+          <div class="text-center p-4 border-t md:border-t-0 md:border-l border-gray-200 dark:border-gray-700">
+            <p class="text-3xl font-black text-lions-blue dark:text-lions-gold">1000+</p>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400" data-i18n="stat-impact">Personnes Impactées</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image et espace éditorial -->
+      <div class="max-w-6xl mx-auto px-4 py-16">
+        <div class="grid md:grid-cols-2 overflow-hidden rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <div class="min-h-80 md:min-h-full flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+            <img src="Images/Img1.jpg" alt="Action du Lions Club Abidjan UIPA" class="w-full h-full min-h-80 object-contain">
+          </div>
+          <div class="p-8 sm:p-12 flex flex-col justify-center bg-gradient-to-br from-blue-50 to-amber-50 dark:from-gray-800 dark:to-gray-900">
+            <span class="text-xs font-bold uppercase tracking-widest text-lions-gold mb-3">Notre engagement</span>
+            <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-4">"Agir ensemble, changer des vies"</h2>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              « Servir ensemble, c'est notre force. »
+              <p>Chez le Lions Clubs International, nous croyons fermement que les plus grands changements naissent de l'action collective. Chaque jour, nos membres s'unissent avec enthousiasme et détermination pour soutenir ceux qui en ont le plus besoin, faire vivre la solidarité locale et répondre aux grands défis humanitaires. </p>
+              Être un Lion, c'est partager des moments d'entraide, créer des liens authentiques et faire une réelle différence au cœur de nos communautés. Rejoignez notre mouvement : ensemble, faisons rayonner l'espoir et le service !
+            </p>
+          </div>
+        </div>
+      </div>
+
+    <!-- Image et espace éditorial -->
+      <div class="max-w-6xl mx-auto px-4 py-16">
+        <div class="grid md:grid-cols-2 overflow-hidden rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <div class="min-h-80 md:min-h-full flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+            <img src="Images/Img Club Generale.jpeg" alt="Action du Lions Club Abidjan UIPA" class="w-full h-full min-h-80 object-contain">
+          </div>
+          <div class="p-8 sm:p-12 flex flex-col justify-center bg-gradient-to-br from-blue-50 to-amber-50 dark:from-gray-800 dark:to-gray-900">
+            <span class="text-xs font-bold uppercase tracking-widest text-lions-gold mb-3">Collectif</span>
+            <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-4">"Servir pour unir"</h2>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              
+              <p>
+Regardez ce groupe. Un mélange de générations, de parcours et de cultures, tous réunis par une même vocation. Ce que vous voyez ici n'est pas simplement une assemblée formelle, c'est le cœur battant du service humanitaire. C'est l'incarnation d'un engagement inébranlable : la solidarité en action.<br>
+<br>Notre dévotion ne connaît pas de limites géographiques ou sociales. Elle s'éveille face au besoin et se renforce face à l'adversité. Pour nous, les Lions, l'amour du prochain n'est pas un concept abstrait, c'est le moteur de chaque projet, de chaque geste, de chaque initiative. C'est tendre la main à ceux qui en ont le plus besoin, sans jugement, avec le seul désir d'apporter réconfort, soutien et espoir.<br>
+<br>En tant que Lions du Lions Club Abidjan UIPA, nous nous unissons avec joie et détermination pour bâtir des communautés plus fortes, où le bien-être de chacun est la priorité de tous. Servir, pour nous, c'est s'engager avec compassion et cœur, transformant l'idéal de solidarité en une réalité tangible pour notre communauté. </p>
+              Être un Lion, c'est partager des moments d'entraide, créer des liens authentiques et faire une réelle différence au cœur de nos communautés. Rejoignez notre mouvement : ensemble, faisons rayonner l'espoir et le service !
+            </p>
+          </div>
+        </div>
+      </div>
+
+    <!-- Image et espace éditorial -->
+      <div class="max-w-6xl mx-auto px-4 py-16">
+        <div class="grid md:grid-cols-2 overflow-hidden rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+          <div class="min-h-80 md:min-h-full flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+            <img src="Images/Img Meite.jpeg" alt="Action du Lions Club Abidjan UIPA" class="w-full h-full min-h-80 object-contain">
+          </div>
+          <div class="p-8 sm:p-12 flex flex-col justify-center bg-gradient-to-br from-blue-50 to-amber-50 dark:from-gray-800 dark:to-gray-900">
+            <span class="text-xs font-bold uppercase tracking-widest text-lions-gold mb-3">Mot du president</span>
+            <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-4">"Là où il y a un besoin, il y a un Lion. Là où il y a une volonté, il y a un chemin vers un avenir meilleur."</h2>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+              Chers membres, chers partenaires, chers amis,
+              <p>
+C'est avec une immense fierté et un profond sens du devoir que je m'adresse à vous en tant que Président. L'image de notre organisation, tout comme l'insigne que je porte, représente bien plus qu'une simple affiliation. Elle incarne un engagement inébranlable envers le service, la compassion et l'action concrète.<br>
+<br>Regarder vers l'avenir, c'est reconnaître les défis qui nous attendent, mais c'est aussi célébrer le potentiel infini de notre action collective. Notre force ne réside pas seulement dans nos ressources, mais dans la passion et le dévouement de chacun d'entre vous. Chaque geste de solidarité, chaque projet mené à bien, chaque vie touchée renforce le tissu de notre communauté et éclaire notre chemin.<br>
+<br>Mon mandat est guidé par une conviction simple : ensemble, nous pouvons accomplir l'extraordinaire. Je nous invite à redoubler d'efforts pour identifier les besoins de notre époque et y répondre avec audace et créativité. Que notre service ne soit pas seulement une réponse à la nécessité, mais un catalyseur d'espoir et de changement durable.
+        Continuons à servir avec cœur, à diriger avec intégrité et à inspirer par l'exemple. Le chemin devant nous est prometteur, et c'est unis que nous le parcourrons.
+       Avec toute ma gratitude et ma détermination,
+</p>
+              <br>Meite Kalimoulaye<br><b>Président du Lions Club Abidjan UIPA</b>
+              <b>Mandat 2026-2027</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIQUE -->
+    <section id="page-historique" class="page-section hidden max-w-5xl mx-auto px-4 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-4" data-i18n="hist-title">Nos Histoires & Valeurs</h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-i18n="hist-sub">Inspiré de l'héritage mondial du Lions Clubs International fondé en 1917, le club Abidjan UIPA perpétue la tradition du service désintéressé.</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-lions-gold/40">
+        <div class="relative flex items-center md:justify-between group">
+          <div class="flex items-center w-full md:w-1/2 md:pr-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 w-full">
+              <span class="text-xs font-bold text-lions-gold">1917</span>
+              <h3 class="font-bold text-lg text-lions-blue dark:text-white" data-i18n="hist-e1-title">Fondation du Lions Club International</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2" data-i18n="hist-e1-desc">Melvin Jones rassemble des leaders d'opinion aux États-Unis avec une idée simple : améliorer leurs communautés.</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex items-center md:justify-end group">
+          <div class="flex items-center w-full md:w-1/2 md:pl-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 w-full">
+              <span class="text-xs font-bold text-lions-gold">1925</span>
+              <h3 class="font-bold text-lg text-lions-blue dark:text-white" data-i18n="hist-e2-title">Les Chevaliers des Aveugles</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2" data-i18n="hist-e2-desc">Helen Keller défie les Lions de devenir les "Chevaliers des aveugles dans la croisade contre les ténébres".</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative flex items-center md:justify-between group">
+          <div class="flex items-center w-full md:w-1/2 md:pr-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 w-full">
+              <span class="text-xs font-bold text-lions-gold">Création</span>
+              <h3 class="font-bold text-lg text-lions-blue dark:text-white" data-i18n="hist-e3-title">Charte du Lions Club Abidjan UIPA</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-2" data-i18n="hist-e3-desc">Naissance du club avec pour mission de mener des actions ciblées dans les quartiers d'Abidjan et promouvoir l'excellence académique et sociale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVITES -->
+    <section id="page-activites" class="page-section hidden max-w-7xl mx-auto px-4 py-12">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-lions-gold">Notre engagement</span>
+        <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mt-2 mb-3" data-i18n="act-title">Nos domaines d'action</h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto" data-i18n="act-sub">Nous agissons au service des grandes causes humanitaires du Lions International.</p>
+      </div>
+
+      <!-- Causes mondiales -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20" id="activities-grid">
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="vue">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="eye" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">La vue</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Prévenir la cécité évitable et améliorer l'accès aux soins visuels.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="diabete">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="activity" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Le diabète</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Sensibiliser, dépister et accompagner les personnes touchées par le diabète.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="faim">
+          <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="utensils" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">La faim</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Soutenir la sécurité alimentaire et les familles les plus vulnérables.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="env">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="trees" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">L'environnement</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Protéger notre cadre de vie par le reboisement, la salubrité et l'éducation.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="cancer">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="heart-pulse" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Cancer infantile</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Aider les enfants malades et leurs familles à accéder à un meilleur accompagnement.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="jeunesse">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="graduation-cap" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Jeunesse</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Donner aux jeunes les moyens de réussir, de s'engager et de devenir acteurs de leur avenir.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="catastrophes">
+          <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="life-buoy" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Aide aux catastrophes</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Mobiliser rapidement des ressources pour soutenir les communautés sinistrées.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="humanitaire">
+          <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="hand-heart" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Action humanitaire</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Répondre aux besoins locaux avec solidarité, dignité et proximité.</p>
+        </article>
+        <article class="activity-card bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700" data-category="sante-mentale">
+          <div class="w-12 h-12 rounded-xl bg-violet-100 dark:bg-violet-900/40 text-lions-blue dark:text-lions-gold flex items-center justify-center mb-5"><i data-lucide="brain" class="w-6 h-6"></i></div>
+          <h3 class="font-bold text-lg text-lions-blue dark:text-white mb-2">Santé mentale</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Sensibiliser, prévenir l'isolement et favoriser l'accès à l'écoute et au soutien.</p>
+        </article>
+      </div>
+
+      <!-- Archives des mandats -->
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-12">
+        <div class="text-center mb-10">
+          <span class="text-xs font-bold uppercase tracking-widest text-lions-gold">Archives du club</span>
+          <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mt-2 mb-3">Nos activités par mandat</h2>
+          <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Retrouvez les actions, les projets et les moments forts de nos mandats.</p>
+        </div>
+
+        <div class="space-y-10">
+          <article class="mandate-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700"><div class="flex flex-wrap items-start justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-lions-gold">Mandat 1</p><h3 class="text-2xl font-black text-lions-blue dark:text-white mt-1">2023 - 2024</h3></div><span class="rounded-full bg-blue-50 dark:bg-blue-900/40 px-3 py-1 text-xs font-bold text-lions-blue dark:text-lions-gold">Président : Emmanuel BINI</span></div></div>
+            <div class="mandate-activities grid lg:grid-cols-3 gap-6 p-6">
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Action à l'orphelinat & foyer OFAA</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/OFAA 1.jpeg" alt="Photo 1 de l'activité 1 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/OFAA 4.jpeg" alt="Photo 2 de l'activité 1 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/OFAA 3.jpeg" alt="Photo 3 de l'activité 1 du mandat 1" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Marathon "25 000 pas contre le diabète"</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/PAS 1.jpeg" alt="Photo 1 de l'activité 2 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/PAS 2.jpeg" alt="Photo 2 de l'activité 2 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/PAS 3.jpeg" alt="Photo 3 de l'activité 2 du mandat 1" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Journée Carrière</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/JC1.jpeg" alt="Photo 1 de l'activité 3 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/JC 2.jpeg" alt="Photo 2 de l'activité 3 du mandat 1" class="h-24 w-full rounded-lg object-cover"><img src="Images/JC 3.jpeg" alt="Photo 3 de l'activité 3 du mandat 1" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+            </div>
+          </article>
+          <article class="mandate-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700"><div class="flex flex-wrap items-start justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-lions-gold">Mandat 2</p><h3 class="text-2xl font-black text-lions-blue dark:text-white mt-1">2024 - 2025</h3></div><span class="rounded-full bg-blue-50 dark:bg-blue-900/40 px-3 py-1 text-xs font-bold text-lions-blue dark:text-lions-gold">Président : Kader Traoré</span></div></div>
+            <div class="mandate-activities grid lg:grid-cols-3 gap-6 p-6">
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Activité sur la toxicomanie</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/TC 1.jpeg" alt="Photo 1 de l'activité 1 du mandat 2" class="h-24 w-full rounded-lg object-cover"><img src="Images/TC 2.jpeg" alt="Photo 2 de l'activité 1 du mandat 2" class="h-24 w-full rounded-lg object-cover"><img src="Images/TC 3.jpeg" alt="Photo 3 de l'activité 1 du mandat 2" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">CGCZ</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/CG 1.jpeg" alt="Photo 1 de l'activité 2 du mandat 2" class="h-24 w-full rounded-lg object-cover"><img src="Images/CG 2.jpeg" alt="Photo 2 de l'activité 2 du mandat 2" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Octobre Rose </h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/OC 1.jpeg" alt="Photo 1 de l'activité 3 du mandat 2" class="h-24 w-full rounded-lg object-cover"><img src="Images/OC 2.jpeg" alt="Photo 2 de l'activité 3 du mandat 2" class="h-24 w-full rounded-lg object-cover"><img src="Images/OC 3.jpeg" alt="Photo 3 de l'activité 3 du mandat 2" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+            </div>
+          </article>
+          <article class="mandate-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700"><div class="flex flex-wrap items-start justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-lions-gold">Mandat 3</p><h3 class="text-2xl font-black text-lions-blue dark:text-white mt-1">2025 - 2026</h3></div><span class="rounded-full bg-blue-50 dark:bg-blue-900/40 px-3 py-1 text-xs font-bold text-lions-blue dark:text-lions-gold">Président : Tenin Coulibaly</span></div></div>
+            <div class="mandate-activities grid lg:grid-cols-3 gap-6 p-6">
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Randonnée BANCO</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/BC 1.jpeg" alt="Photo 1 de l'activité 1 du mandat 3" class="h-24 w-full rounded-lg object-cover"><img src="Images/BC 2.jpeg" alt="Photo 2 de l'activité 1 du mandat 3" class="h-24 w-full rounded-lg object-cover"><img src="Images/BC 3.jpeg" alt="Photo 3 de l'activité 1 du mandat 3" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">CGCZ</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/Z1.jpeg" alt="Photo 1 de l'activité 2 du mandat 3" class="h-24 w-full rounded-lg object-cover"><img src="Images/Z2.jpeg" alt="Photo 2 de l'activité 2 du mandat 3" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Journée Carrière</h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/J1.jpeg" alt="Photo 1 de l'activité 3 du mandat 3" class="h-24 w-full rounded-lg object-cover"><img src="Images/J2.jpeg" alt="Photo 2 de l'activité 3 du mandat 3" class="h-24 w-full rounded-lg object-cover"><img src="Images/J3.jpeg" alt="Photo 3 de l'activité 3 du mandat 3" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+            </div>
+          </article>
+          <article class="mandate-card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-700"><div class="flex flex-wrap items-start justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-lions-gold">Mandat 4</p><h3 class="text-2xl font-black text-lions-blue dark:text-white mt-1">2026 - 2027</h3></div><span class="rounded-full bg-blue-50 dark:bg-blue-900/40 px-3 py-1 text-xs font-bold text-lions-blue dark:text-lions-gold">Président : Meite Kalimoulaye</span></div></div>
+            <div class="mandate-activities grid lg:grid-cols-3 gap-6 p-6">
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Activité 1 : </h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/Img1.jpg" alt="Photo 1 de l'activité 1 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 2 de l'activité 1 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 3 de l'activité 1 du mandat 4" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Activité 2 : </h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/Img1.jpg" alt="Photo 1 de l'activité 2 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 2 de l'activité 2 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 3 de l'activité 2 du mandat 4" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+              <div class="activity-entry"><h4 class="font-bold text-lions-blue dark:text-lions-gold mb-3">Activité 3 : </h4><div class="grid grid-cols-3 gap-2 mb-3"><img src="Images/Img1.jpg" alt="Photo 1 de l'activité 3 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 2 de l'activité 3 du mandat 4" class="h-24 w-full rounded-lg object-cover"><img src="Images/Img1.jpg" alt="Photo 3 de l'activité 3 du mandat 4" class="h-24 w-full rounded-lg object-cover"></div><p class="text-sm text-gray-600 dark:text-gray-300">.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBRES -->
+    <section id="page-membres" class="page-section hidden max-w-7xl mx-auto px-4 py-12">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-2" data-i18n="mem-title">Membres Actifs</h2>
+        <p class="text-gray-600 dark:text-gray-300" data-i18n="mem-sub">Des bénévoles dévoués au service de la communauté.</p>
+      </div>
+
+      <div class="max-w-md mx-auto mb-8">
+        <div class="relative">
+          <input type="text" id="member-search" onkeyup="filterMembers()" placeholder="Rechercher un membre ou une fonction..." class="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-lions-blue">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-gray-400"></i>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="members-grid">
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center">
+            <img src="Images/Img Meite.jpeg" alt="Photo du Président du Club" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-lg">Président du Club</h3>
+          <p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+           <p class="text-xs text-gray-500 dark:text-gray-400">Meite Kalimoulaye</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p>
+         
+          <p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 07 07 225 926 </p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center">
+            <img src="Images/Img Ahiza.jpeg" alt="" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-lg">Secrétaire Général</h3>
+          <p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Ahiza Zeze</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0768239659</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center">
+            <img src="Images/Img Zeinab.jpeg" alt="Photo du Trésorier" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-lg">Trésorière</h3>
+          <p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+           <p class="text-xs text-gray-500 dark:text-gray-400">Zeinabou Dene</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 07 59 328 270 </p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center">
+            <img src="Images/Img Bakayoko.jpeg" alt="Photo du Chef de Commission EMS" class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-bold text-lg">Responsable EMS</h3>
+          <p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+           <p class="text-xs text-gray-500 dark:text-gray-400">Bakayoko Ismael</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p>
+           <p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 07 79 061 621</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Tenin.jpeg" alt="Photo du Vice-président" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">IPP</h3>
+           
+          <p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Tenin Coulibaly</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0545635509</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Aicha.jpeg" alt="Photo du Responsable de la Vue" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Protocol Principal</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Aicha Fofana</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0554785619</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Tresor.jpeg" alt="Photo du Responsable de la Faim" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Coordonnateur LCIF</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif
+             <p class="text-xs text-gray-500 dark:text-gray-400">Tresor Akpli</p>
+          </p><p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0172905151</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Aka.jpeg" alt="Photo du Responsable de l'Environnement" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Responsable EME</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Christ Armel Aka</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0788700919</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Mariam.jpeg" alt="Photo du Responsable de la Jeunesse" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Vice Responsable EME</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mariam Cherifou</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0758565228</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Kader.jpeg" alt="Photo du Responsable de la Santé mentale" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Directeur de Club</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Kader Traoré</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0787132855</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-blue/10 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/img Bini 2.jpeg" alt="Photo du Conseiller du Club" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Responsable EML</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Emmanuel Bini</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0788606461</p>
+        </div>
+        <div class="member-card bg-white dark:bg-gray-800 p-6 rounded-2xl text-center shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="member-photo-frame w-32 h-32 rounded-2xl bg-lions-gold/20 mx-auto mb-4 overflow-hidden flex items-center justify-center"><img src="Images/Img Ady1.jpeg" alt="Photo du Responsable Communication" class="w-full h-full object-cover"></div>
+          <h3 class="font-bold text-lg">Vice Responsable EML</h3><p class="text-xs font-semibold text-lions-gold mb-2">Bureau Exécutif</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Ady Sirany</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Mandat 2026-2027</p><p class="text-xs text-gray-500 dark:text-gray-400">Téléphone : +225 0575889938</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="page-contact" class="page-section hidden max-w-4xl mx-auto px-4 py-12">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-black text-lions-blue dark:text-lions-gold mb-2" data-i18n="con-title">Contactez-Nous</h2>
+        <p class="text-gray-600 dark:text-gray-300" data-i18n="con-sub">Une question, un partenariat ou envie d'adhérer ? Laissez-nous un message.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-semibold mb-2" data-i18n="form-name">Nom & prénoms</label>
+              <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm focus:ring-2 focus:ring-lions-blue outline-none">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2" data-i18n="form-email">Adresse email</label>
+              <input type="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm focus:ring-2 focus:ring-lions-blue outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" data-i18n="form-subject">Sujet</label>
+            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm focus:ring-2 focus:ring-lions-blue outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" data-i18n="form-msg">Message</label>
+            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm focus:ring-2 focus:ring-lions-blue outline-none"></textarea>
+          </div>
+          <a href="https://wa.me/?text=Bonjour%20Lions%20Club%20Abidjan%20UIPA" target="_blank" rel="noopener noreferrer" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2" title="Nous contacter sur WhatsApp">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Soumettre</span>
+          </a>
+        </form>
+        <div id="contact-alert" class="hidden mt-4 p-4 rounded-xl bg-green-100 text-green-800 text-center font-medium text-sm">
+          Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-lions-blue dark:text-lions-gold mb-5 text-center">Informations </h3>
+          <div class="grid sm:grid-cols-2 gap-4 mb-6">
+            <a href="tel:+2250000000000" class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+              <i data-lucide="phone" class="w-5 h-5 text-lions-blue dark:text-lions-gold"></i>
+              <span class="text-sm font-semibold">+225 00 00 00 00 00</span>
+            </a>
+            <a href="mailto:contact@lionsclubabidjanuipa.org" class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+              <i data-lucide="mail" class="w-5 h-5 text-lions-blue dark:text-lions-gold"></i>
+              <span class="text-sm font-semibold break-all">contact@lionsclubabidjanuipa.org</span>
+            </a>
+            <a href="https://www.facebook.com/share/1Crozr27HT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+              <span aria-hidden="true" class="w-5 h-5 rounded-full bg-[#1877F2] text-white flex items-center justify-center font-bold text-base leading-none">f</span>
+              <span class="text-sm font-semibold">Compte Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com/@lionsclubabidjanuipa?_r=1&_t=ZS-99wto5Dyj4M" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+              <i data-lucide="music-2" class="w-5 h-5 text-lions-blue dark:text-lions-gold"></i>
+              <span class="text-sm font-semibold">Compte TikTok</span>
+            </a>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 items-stretch">
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-gray-900">
+              <i data-lucide="map-pin" class="w-5 h-5 mt-0.5 text-lions-blue dark:text-lions-gold"></i>
+              <div>
+                <p class="font-bold mb-1">Notre siège</p>
+                <p class="text-sm text-gray-600 dark:text-gray-300">Université Internationale Privée d'Abidjan (UIPA), Cocody, Abidjan, Côte d'Ivoire.</p>
+              </div>
+            </div>
+            <div class="overflow-hidden rounded-xl min-h-48 border border-gray-200 dark:border-gray-700">
+              <div class="relative h-64">
+                <iframe title="Localisation du siège du Lions Club Abidjan UIPA" src="https://www.openstreetmap.org/export/embed.html?bbox=-4.02%2C5.30%2C-3.95%2C5.37&amp;layer=mapnik&amp;marker=5.336%2C-3.98" class="w-full h-full border-0" loading="lazy"></iframe>
+                <a href="https://maps.app.goo.gl/DHdYGb9iQp4ZioSn8?g_st=ic" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la position exacte dans Google Maps" class="absolute inset-0 z-10"></a>
+              </div>
+              <p class="bg-lions-blue px-4 py-2 text-center text-sm font-semibold text-white">Cliquer sur la carte pour ouvrir Google Maps</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 text-center flex flex-col items-center">
+      <p class="text-sm text-gray-400">
+        © 2026 Lions Club Abidjan UIPA. Tous droits réservés.
+      </p>
+      <p class="text-xs text-gray-500 mt-2">
+        Affilié au Lions Clubs International | District 403 A2
+      </p>
+    </div>
+  </footer>
+
+  <!-- Script JS Externe -->
+  <script src="script.js"></script>
+</body>
+</html>
