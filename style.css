@@ -1,0 +1,244 @@
+/* Base responsive */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: radial-gradient(circle at center, #ffffff 0%, #f2f6fb 72%, #e7edf5 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-progress {
+  width: min(15rem, 68vw);
+  height: 0.45rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #d9e2ee;
+}
+
+.loader-progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #00338d;
+  transition: width 0.18s ease-out;
+}
+
+.loader-crossing {
+  position: relative;
+  width: min(17rem, 82vw);
+  height: min(12rem, 30vh);
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.loader-emblem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  object-fit: contain;
+  background: #fff;
+  border: 3px solid #f2a900;
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 28px rgb(0 35 100 / 22%);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.loader-emblem-international {
+  width: 6.25rem;
+  height: 6.25rem;
+  animation: cross-international 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.loader-emblem-abidjan {
+  width: 5.5rem;
+  height: 8rem;
+  animation: cross-abidjan 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes cross-international {
+  0%, 100% {
+    transform: translate3d(-5.3rem, -50%, 0) rotateY(-24deg) rotateZ(-7deg);
+  }
+  50% {
+    transform: translate3d(-50%, -50%, 46px) rotateY(18deg) rotateZ(5deg);
+  }
+}
+
+@keyframes cross-abidjan {
+  0%, 100% {
+    transform: translate3d(-0.6rem, -50%, 0) rotateY(24deg) rotateZ(7deg);
+  }
+  50% {
+    transform: translate3d(-50%, -50%, 28px) rotateY(-18deg) rotateZ(-5deg);
+  }
+}
+
+.loader-name {
+  margin: 0;
+  color: #00338d;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+img,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+textarea {
+  max-width: 100%;
+}
+
+/* Effet Glassmorphism pour la barre de navigation */
+.glass-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Animations légères pour les transitions */
+.page-section {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  header .max-w-7xl {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  header .h-20 {
+    min-height: 4.5rem;
+    height: auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  header a[aria-label],
+  header a:first-child {
+    min-width: 0;
+  }
+
+  header a:first-child > div:last-child {
+    min-width: 0;
+  }
+
+  header a:first-child span {
+    font-size: 0.75rem;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  header a:first-child img {
+    max-height: 2.75rem;
+  }
+
+  main .py-24 {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  main h1 {
+    overflow-wrap: anywhere;
+  }
+
+  main .-mt-10 {
+    margin-top: -2rem;
+  }
+
+  main .rounded-3xl {
+    border-radius: 1rem;
+  }
+
+  main .p-8,
+  main .sm\\:p-12 {
+    padding: 1.25rem;
+  }
+
+  main .grid {
+    min-width: 0;
+  }
+
+  main .grid > * {
+    min-width: 0;
+  }
+
+  footer {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .loader-emblem-international {
+    animation: none;
+    transform: translate3d(-6.8rem, -50%, 0);
+  }
+
+  .loader-emblem-abidjan {
+    animation: none;
+    transform: translate3d(0.35rem, -50%, 0);
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
